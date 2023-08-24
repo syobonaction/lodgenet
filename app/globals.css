@@ -186,3 +186,42 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.sunset {
+  border: 0px solid rgba(100, 100, 100, 1);
+  background:
+    radial-gradient(
+      64% 70% at 100% 0%,
+      rgba(247, 214, 98, 0.8) 0%,
+      rgba(247, 214, 98, 0.2) 52%,
+      rgba(247, 214, 98, 0) 100%
+    ),
+    linear-gradient(
+      208deg,
+      rgba(240, 66, 42, 1) 7%,
+      rgba(240, 88, 42, 0.2) 43%,
+      rgba(240, 101, 42, 0) 64%
+    ),
+    radial-gradient(
+      115% 123% at 0% -15%,
+      rgba(231, 79, 106, 1) 1%,
+      rgba(231, 79, 106, 0.2) 67%,
+      rgba(231, 79, 106, 0) 100%
+    ),
+    linear-gradient(
+      334deg,
+      rgba(83, 208, 236, 0.8) 0%,
+      rgba(83, 208, 236, 0.2) 20%,
+      rgba(138, 137, 190, 0) 35%
+    ),
+    radial-gradient(
+      109% 149% at 4% 98%,
+      rgba(27, 49, 128, 1) 0%,
+      rgba(27, 49, 128, 0) 100%
+    ),
+    linear-gradient(
+      142deg,
+      rgba(78, 173, 235, 1) 19%,
+      rgba(78, 173, 235, 0) 99%
+    );
+}

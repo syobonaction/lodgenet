@@ -8,7 +8,7 @@ import Header from "../components/Header"
 import { useEffect, useState } from "react"
 import ForecastCard from "../components/ForecastCard"
 
-interface DataTypes {
+interface WeatherData {
   locale: types.Location
 }
 
@@ -43,7 +43,7 @@ export default function Weather() {
     error,
     isLoading,
     isSuccess,
-  }: UseQueryResult<DataTypes> = useQuery({
+  }: UseQueryResult<WeatherData> = useQuery({
     queryKey: ['localWeather'],
     queryFn: async () => {
       const data = await loadLocalWeatherData()
@@ -52,13 +52,13 @@ export default function Weather() {
   })
 
   return (
-    <main className="text-white">
+    <main className="text-white sunset h-screen">
       <div className="p-24">
         <Header {...data?.locale!} />
         <div className="grid grid-flow-col grid-cols-3 gap-8 pt-24">
-          <ForecastCard {...data?.locale.current!}/>
-          <ForecastCard {...data?.locale.current!}/>
-          <ForecastCard {...data?.locale.current!}/>
+          <ForecastCard weekday="MON" current={data?.locale.current!}/>
+          <ForecastCard weekday="TUE" current={data?.locale.current!}/>
+          <ForecastCard weekday="WED" current={data?.locale.current!}/>
         </div>
       </div>
       <Footer />
