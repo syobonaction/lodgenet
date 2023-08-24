@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import { cities }  from "./data/cities"
 import Clock from "./components/Clock"
+import Footer from "./components/Footer"
 
 interface cityData {
   city: string
@@ -11,23 +12,23 @@ interface cityData {
 }
 
 export default function Home() {
-  const lodgeTypes = ["Lodge", "Inn", "Garden Inn", "Resort", "Hotel"]
   const [location, setLocation] = useState({
     city: "",
     state: ""
   })
   const [lodgeName, setLodgeName] = useState("")
   
-  const getLocation = (cities: cityData[]) => {
+  const getLocation = useCallback((cities: cityData[]) => {
+    const lodgeTypes = ["Lodge", "Inn", "Garden Inn", "Resort", "Hotel"]
     const loc = cities[Math.floor(Math.random() * cities.length)]
     const lodgeType = lodgeTypes[Math.floor(Math.random() * lodgeTypes.length)]
     setLocation(loc)
     setLodgeName(`Hampton ${lodgeType} ${loc.city}`)
-  }
+  }, [])
   
   useEffect(() => {
     getLocation(cities)
-  }, [])
+  }, [getLocation])
 
   return (
     <main className="text-white">
@@ -51,14 +52,7 @@ export default function Home() {
           </div>
         </div> 
       </div>
-      <div className="text-xl bg-blue-900 w-screen p-4 fixed bottom-0 ">
-        <h3 className="align-center">To Navigate, press the up and down keys</h3>
-        <ul className="list-disc pl-6">
-          <li>Games</li>
-          <li>Games</li>
-          <li>Games</li>
-        </ul>
-      </div>
+      <Footer />
     </main>
   )
 }
