@@ -19,7 +19,7 @@ const ForecastCard: React.FC<ForecastCardProps> = ({
   return (
     <div className="border-gray-200 border-4 p-4 text-center bg-gradient-to-b from-indigo-800 to-blue-600">
       <h1 className="text-4xl pt-4 pb-8">{weekday}</h1>
-      <Image className="mx-auto" alt="thunderstorm icon" src={"/images/storm.png"} width={100} height={100}/>
+      {current && <Image className="mx-auto" alt="thunderstorm icon" src={`https://openweathermap.org/img/wn/${current?.weather[0]?.icon}@4x.png`} width={150} height={150}/>}
       <p className="text-4xl py-8">{current?.weather[0]?.description!}</p>
       <div className="grid grid-cols-2 text-4xl">
         <div className="row-span-1">

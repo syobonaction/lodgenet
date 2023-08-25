@@ -27,6 +27,7 @@ export type Weather = {
   id: Scalars['Int']['output']
   type: Scalars['Int']['output']
   description: Scalars['Int']['output']
+  icon: Scalars['String']['output']
 }
 
 export type Atmosphere = {

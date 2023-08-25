@@ -19,6 +19,7 @@ const localWeatherDataQuery = gql`
         id
         type
         description
+        icon
       }
       atmosphere {
         temperature {
