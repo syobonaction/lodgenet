@@ -1,4 +1,4 @@
-import * as types from "../graph/graphql"
+import * as types from "../../graph/graphql"
 
 interface HeaderTypes {
   location: string,

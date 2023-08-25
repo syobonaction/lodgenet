@@ -4,8 +4,9 @@ import {request, gql} from "graphql-request"
 import * as types from "../graph/graphql"
 import { useQuery, UseQueryResult} from "@tanstack/react-query"
 import Footer from "../components/Footer"
-import Header from "../components/Header"
-import ForecastCard from "../components/ForecastCard"
+import Header from "./components/Header"
+import ForecastCard from "./components/ForecastCard"
+import ExtendedForecast from "./containers/ExtendedForecast"
 
 interface WeatherData {
   currentWeather: types.CurrentWeather
@@ -68,11 +69,11 @@ export default function Weather() {
     <main className="text-white sunset h-screen">
       <div className="p-24">
         <Header location={"Chicago"} region={"Illinois"}/>
-        <div className="grid grid-flow-col grid-cols-3 gap-8 pt-24">
+        <ExtendedForecast>
           <ForecastCard weekday="MON" current={data?.currentWeather!}/>
           <ForecastCard weekday="TUE" current={data?.currentWeather!}/>
           <ForecastCard weekday="WED" current={data?.currentWeather!}/>
-        </div>
+        </ExtendedForecast>
       </div>
       <Footer />
     </main>
