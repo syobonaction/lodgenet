@@ -5,30 +5,43 @@ import * as types from "../graph/graphql"
 import { useQuery, UseQueryResult} from "@tanstack/react-query"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
-import { useEffect, useState } from "react"
 import ForecastCard from "../components/ForecastCard"
 
 interface WeatherData {
-  locale: types.Location
+  currentWeather: types.CurrentWeather
 }
 
 const localWeatherDataQuery = gql`
-  query localWeatherData($zip: String!) {
-    locale(zip: $zip) {
-      name
-      region
-      current {
-        temperature
-        feelslike
-        windSpeed
-        windDirection
-        isDay
+  query localWeatherData($lat: String!, $lon: String!) {
+    currentWeather(lat: $lat, lon: $lon) {
+      weather {
+        id
+        type
+        description
+      }
+      atmosphere {
+        temperature {
+          real
+          min
+          max
+        }
+        pressure
+        humidity
+      }
+      conditions {
+        wind {
+          speed
+          degree
+          gust
+        }
+        sunset
+        sunrise
       }
     }
   }
 `
 
-const queryVariables = { zip: "60605" }
+const queryVariables = { lat: "41.881832", lon: "-87.623177"}
 
 const loadLocalWeatherData = () => {
   return request("http://localhost:8080/query",
@@ -54,11 +67,11 @@ export default function Weather() {
   return (
     <main className="text-white sunset h-screen">
       <div className="p-24">
-        <Header {...data?.locale!} />
+        <Header location={"Chicago"} region={"Illinois"}/>
         <div className="grid grid-flow-col grid-cols-3 gap-8 pt-24">
-          <ForecastCard weekday="MON" current={data?.locale.current!}/>
-          <ForecastCard weekday="TUE" current={data?.locale.current!}/>
-          <ForecastCard weekday="WED" current={data?.locale.current!}/>
+          <ForecastCard weekday="MON" current={data?.currentWeather!}/>
+          <ForecastCard weekday="TUE" current={data?.currentWeather!}/>
+          <ForecastCard weekday="WED" current={data?.currentWeather!}/>
         </div>
       </div>
       <Footer />

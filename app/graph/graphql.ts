@@ -9,36 +9,53 @@ export type Scalars = {
   Float: { input: number; output: number; }
 }
 
-/* Current weather conditions at a Location */
-export type Current = {
-  __typename?: "Current"
-  /* A Location's current temperature */
-  temperature: Scalars['Int']['output']
-  /* What the Location's current temperature feels like */
-  feelslike: Scalars['Int']['output']
-  /* Current wind speed at the location */
-  windSpeed: Scalars['Int']['output']
-  /* Current wind direction at the location */
-  windDirection: Scalars['String']['output']
-  /* If currently daytime at the Location */
-  isDay: Scalars['Boolean']['output']
+export type Query = {
+  __typename?: "Query"
+  currentWeather: CurrentWeather
 }
 
-export type Query = {
-  __typename?: 'Query';
-  /** Get a Location's current weather conditions */
-  locale: Location;
-};
+/* Current weather conditions at a Location */
+export type CurrentWeather = {
+  __typename?: "CurrentWeather"
+  weather: [Weather]
+  atmosphere: Atmosphere
+  conditions: Conditions
+}
 
-/* A location given by zipcode */
-export type Location = {
-  __typename?: "Location"
-  /* The name of a location */
-  name: Scalars['String']['output']
-  /* The region (state) of a location */
-  region: Scalars['String']['output']
-  /* Current weather conditions at a Location */
-  current: Current
+export type Weather = {
+  __typename?: "Weather"
+  id: Scalars['Int']['output']
+  type: Scalars['Int']['output']
+  description: Scalars['Int']['output']
+}
+
+export type Atmosphere = {
+  __typename?: "Atmosphere"
+  temperature: Temperature
+  pressure: Scalars['Int']['output']
+  humidity: Scalars['Int']['output']
+}
+
+export type Temperature = {
+  __typename?: "Temperature"
+  real: Scalars['Float']['output']
+  min: Scalars['Float']['output']
+  max: Scalars['Float']['output']
+  feelslike: Scalars['Float']['output']
+}
+
+export type Conditions = {
+  __typename?: "Conditions"
+  wind: Wind
+  sunrise: Scalars['Int']['output']
+  sunset: Scalars['Int']['output']
+}
+
+export type Wind = {
+  __typename?: "Wind"
+  speed: Scalars['Float']['output']
+  degree: Scalars['Int']['output']
+  gust: Scalars['Float']['output']
 }
 
 export type GetLocalWeatherQueryVariables = Exact<{ [key: string]: string }>
