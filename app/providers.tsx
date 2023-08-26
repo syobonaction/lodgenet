@@ -3,11 +3,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useState } from "react"
 
-export default function Providers({
-  children
+const Providers = ({
+  children,
 }: { 
   children: React.ReactNode 
-}) {
+}) => {
   const [client] = useState(new QueryClient());
 
   return (
@@ -16,3 +16,5 @@ export default function Providers({
     </QueryClientProvider>
   );
 }
+
+export default Providers
