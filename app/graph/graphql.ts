@@ -12,11 +12,20 @@ export type Scalars = {
 export type Query = {
   __typename?: "Query"
   currentWeather: CurrentWeather
+  forecast: [Forecast]
 }
 
 /* Current weather conditions at a Location */
 export type CurrentWeather = {
   __typename?: "CurrentWeather"
+  weather: [Weather]
+  atmosphere: Atmosphere
+  conditions: Conditions
+}
+
+export type Forecast = {
+  __typename?: "Forecast"
+  time: Time
   weather: [Weather]
   atmosphere: Atmosphere
   conditions: Conditions
@@ -28,6 +37,12 @@ export type Weather = {
   type: Scalars['Int']['output']
   description: Scalars['Int']['output']
   icon: Scalars['String']['output']
+}
+
+export type Time = {
+  __typename?: "Time"
+  as_int: Scalars['Int']['output']
+  as_string: Scalars['String']['output']
 }
 
 export type Atmosphere = {

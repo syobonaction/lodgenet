@@ -2,22 +2,27 @@
 
 import {request, gql} from "graphql-request"
 import * as types from "../../graph/graphql"
-import { useQuery, UseQueryResult} from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import ForecastCard from "./ForecastCard"
 import { useState } from "react"
+import CycledContent from "../containers/CycledContent"
 
 interface ExtendedForecastProps {
   lat: String
   lon: String
 }
 
-interface WeatherData {
-  currentWeather: types.CurrentWeather
+interface ForecastData {
+  forecast: types.Forecast[]
 }
 
 const localWeatherDataQuery = gql`
   query localWeatherData($lat: String!, $lon: String!) {
-    currentWeather(lat: $lat, lon: $lon) {
+    forecast(lat: $lat, lon: $lon) {
+      time {
+        as_int
+        as_string
+      }
       weather {
         id
         type
@@ -50,11 +55,11 @@ const ExtendedForecast: React.FC<ExtendedForecastProps> = ({
   lat,
   lon
 }) => {
-  const [currentWeather, setCurrentWeather] = useState<types.CurrentWeather | null>(null)
+  const [forecast, setForecast] = useState<types.Forecast[] | null>(null)
 
   const queryVariables = {lat, lon}
 
-  const loadLocalWeatherData = (): Promise<WeatherData> => {
+  const loadLocalWeatherData = (): Promise<ForecastData> => {
     return request("http://localhost:8080/query",
       localWeatherDataQuery,
       queryVariables,
@@ -65,16 +70,36 @@ const ExtendedForecast: React.FC<ExtendedForecastProps> = ({
     queryKey: ['localWeather'],
     queryFn: async () => {
       const data = await loadLocalWeatherData()
-      setCurrentWeather(data.currentWeather)
+      setForecast(data.forecast)
     },
   })
 
+  const getWeekday = (epoch: number): string => {
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thurday",
+      "Friday",
+      "Saturday",
+    ]
+    const dayNumber = ((Math.floor(epoch/86400) + 4) % 7)
+    return weekdays[dayNumber]
+  }
+
   return (
-    <div className="grid grid-flow-col grid-cols-3 gap-8 pt-24">
-      <ForecastCard weekday="MON" current={currentWeather!}/>
-      <ForecastCard weekday="TUE" current={currentWeather!}/>
-      <ForecastCard weekday="WED" current={currentWeather!}/>
-    </div>
+    <>
+      {forecast && (
+        <CycledContent>
+          <div className="grid grid-flow-col grid-cols-3 gap-8 pt-24">
+            <ForecastCard weekday={getWeekday(forecast[0].time.as_int)} forecast={forecast[0]!}/>
+            <ForecastCard weekday={getWeekday(forecast[1].time.as_int)} forecast={forecast[1]!}/>
+            <ForecastCard weekday={getWeekday(forecast[2].time.as_int)} forecast={forecast[2]!}/>
+          </div>  
+        </CycledContent>
+      )}  
+    </>
   )
 }
 

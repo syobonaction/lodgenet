@@ -7,7 +7,7 @@ import CycledContent from "./containers/CycledContent"
 
 export default function Weather() {
   return (
-    <main className="text-white sunset h-screen">
+    <main className="text-white sunset h-screen select-none">
       <div className="p-24">
         <Header location={"Chicago"} region={"Illinois"}/>
         <CycledContent>
