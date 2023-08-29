@@ -22,7 +22,7 @@ const ForecastCard: React.FC<ForecastCardProps> = ({
   }
 
   return (
-    <div className="border-double border-black border-8 text-center bg-gray-200">
+    <div className="border-double border-gray-800 border-8 text-center bg-gray-200">
       <div className="bg-gradient-to-b from-indigo-800 to-blue-600 p-4">
         <h1 className="text-4xl p-4">{weekday}</h1>
         <h2 className="text-2xl">{formatTime(forecast?.time?.as_string)}</h2>
