@@ -5,7 +5,8 @@ import * as types from "../../graph/graphql"
 import { useQuery } from "@tanstack/react-query"
 import ForecastCard from "./ForecastCard"
 import { useState } from "react"
-import CycledContent from "../containers/CycledContent"
+import CycledContent from "../../containers/TimeCycledContent"
+import { useDispatch } from "react-redux"
 
 interface ExtendedForecastProps {
   lat: String
@@ -71,6 +72,7 @@ const ExtendedForecast: React.FC<ExtendedForecastProps> = ({
     queryFn: async () => {
       const data = await loadLocalWeatherData()
       setForecast(data.forecast)
+      return data
     },
   })
 
