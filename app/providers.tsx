@@ -1,7 +1,9 @@
 "use client"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { Provider } from "react-redux"
 import { useState } from "react"
+import { store } from "../store/store"
 
 const Providers = ({
   children,
@@ -12,7 +14,9 @@ const Providers = ({
 
   return (
     <QueryClientProvider client={client}>
-      {children}
+      <Provider store={store}>
+        {children}
+      </Provider>
     </QueryClientProvider>
   );
 }
