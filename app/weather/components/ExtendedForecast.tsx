@@ -5,8 +5,7 @@ import * as types from "../../graph/graphql"
 import { useQuery } from "@tanstack/react-query"
 import ForecastCard from "./ForecastCard"
 import { useState } from "react"
-import CycledContent from "../../containers/TimeCycledContent"
-import { useDispatch } from "react-redux"
+import TimeCycledContent from "../../containers/TimeCycledContent"
 
 interface ExtendedForecastProps {
   lat: String
@@ -93,23 +92,23 @@ const ExtendedForecast: React.FC<ExtendedForecastProps> = ({
   return (
     <>
       {forecast && (
-        <CycledContent delay={6000}>
-          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 pt-24">
+        <TimeCycledContent delay={6000}>
+          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 h-full">
             <ForecastCard weekday={getWeekday(forecast[0].time.as_int)} forecast={forecast[0]!}/>
             <ForecastCard weekday={getWeekday(forecast[1].time.as_int)} forecast={forecast[1]!}/>
             <ForecastCard weekday={getWeekday(forecast[2].time.as_int)} forecast={forecast[2]!}/> 
           </div>
-          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 pt-24">
+          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 h-full">
             <ForecastCard weekday={getWeekday(forecast[3].time.as_int)} forecast={forecast[3]!}/>
             <ForecastCard weekday={getWeekday(forecast[4].time.as_int)} forecast={forecast[4]!}/>
             <ForecastCard weekday={getWeekday(forecast[5].time.as_int)} forecast={forecast[5]!}/> 
           </div>
-          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 pt-24">
+          <div className="grid lg:grid-flow-col lg:grid-cols-3 lg:gap-8 h-full">
             <ForecastCard weekday={getWeekday(forecast[6].time.as_int)} forecast={forecast[6]!}/>
             <ForecastCard weekday={getWeekday(forecast[7].time.as_int)} forecast={forecast[7]!}/>
             <ForecastCard weekday={getWeekday(forecast[8].time.as_int)} forecast={forecast[8]!}/> 
           </div>
-        </CycledContent>
+        </TimeCycledContent>
       )}  
     </>
   )

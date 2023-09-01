@@ -8,15 +8,19 @@ import SubscriptionCycledContent from "../containers/SubscriptionCycledContent"
 
 export default function Weather() {
   return (
-    <main className="text-white sunset w-screen h-screen select-none">
-      <div className="p-24">
+    <main className="text-white sunset w-screen h-screen grid grid-rows-6 gap-y-4 select-none">
+      <div className="px-16 w-full h-full row-span-1">
         <Header location={"Chicago"} region={"Illinois"}/>
+      </div>
+      <div className="px-16 w-full h-full row-span-4">
         <SubscriptionCycledContent>
           <ExtendedForecast lat={"41.881832"} lon={"-87.623177"}/>
           <CurrentConditions />
         </SubscriptionCycledContent>
       </div>
-      <Footer />
+      <div className="w-full h-full row-span-1">
+        <Footer />
+      </div>
     </main>
   )
 }

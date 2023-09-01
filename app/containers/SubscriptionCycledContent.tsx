@@ -1,4 +1,6 @@
-import { AppDispatch, store } from "@/store/store"
+"use client"
+
+import { store } from "@/store/store"
 import React from "react"
 import { useState } from "react"
 
@@ -18,7 +20,7 @@ const SubscriptionCycledContent = ({
   })
   
   return (
-    <div>
+    <div className="w-full h-full">
       {currentChild}
     </div>
   )

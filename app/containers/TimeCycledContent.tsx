@@ -1,3 +1,5 @@
+"use client"
+
 import { AppDispatch } from "@/store/store"
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -31,7 +33,7 @@ const TimeCycledContent = ({
   }, [delay, childArr, index, dispatch])
 
   return (
-    <div className="transition-opacity">
+    <div className="w-full h-full">
       {currentChild}
     </div>
   )
