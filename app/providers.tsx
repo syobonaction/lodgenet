@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Provider } from "react-redux"
 import { useState } from "react"
 import { store } from "../store/store"
+import LocationProvider from "./providers/LocationProvider"
 
 const Providers = ({
   children,
@@ -15,7 +16,9 @@ const Providers = ({
   return (
     <QueryClientProvider client={client}>
       <Provider store={store}>
-        {children}
+        <LocationProvider>
+          {children}
+        </LocationProvider>
       </Provider>
     </QueryClientProvider>
   );
