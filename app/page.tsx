@@ -2,32 +2,23 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
-import { cities }  from "./data/cities"
 import Clock from "./components/Clock"
 import Footer from "./components/Footer"
-
-interface cityData {
-  city: string
-  state: string
-}
+import { useLocationContext } from "./providers/LocationProvider"
 
 export default function Home() {
-  const [location, setLocation] = useState({
-    city: "",
-    state: ""
-  })
   const [lodgeName, setLodgeName] = useState("")
+
+  const location = useLocationContext()
   
-  const getLocation = useCallback((cities: cityData[]) => {
+  const getLocation = useCallback(() => {
     const lodgeTypes = ["Lodge", "Inn", "Garden Inn", "Resort", "Hotel"]
-    const loc = cities[Math.floor(Math.random() * cities.length)]
     const lodgeType = lodgeTypes[Math.floor(Math.random() * lodgeTypes.length)]
-    setLocation(loc)
-    setLodgeName(`Hampton ${lodgeType} ${loc.city}`)
-  }, [])
+    setLodgeName(`Hampton ${lodgeType} ${location.city}`)
+  }, [location])
   
   useEffect(() => {
-    getLocation(cities)
+    getLocation()
   }, [getLocation])
 
   return (

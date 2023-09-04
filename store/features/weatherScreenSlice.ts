@@ -6,14 +6,10 @@ enum Screen {
 }
 
 interface InitialState {
-  city: string,
-  country: string,
   screen: Screen,
 }
 
 const initialState: InitialState = {
-  city: "Loading...",
-  country: "Loading...",
   screen: Screen.ExtendedForecast,
 }
 
