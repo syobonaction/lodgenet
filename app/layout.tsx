@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-screen h-screen overflow-hidden crt">
+        <div className="w-screen h-screen lg:overflow-hidden crt">
           <Providers>
             {children}
           </Providers>

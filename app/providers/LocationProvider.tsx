@@ -38,7 +38,7 @@ const LocationProvider = ({
       setLocation({
         lat: lat,
         lon: lon,
-        city: address.town,
+        city: address.city || address.town,
         state: address.state,
         complete: true
       })
