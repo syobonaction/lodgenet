@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import { useState } from "react"
 import { store } from "../store/store"
 import LocationProvider from "./providers/LocationProvider"
+import MenuProvider from "./components/Controls"
 
 const Providers = ({
   children,
@@ -17,7 +18,9 @@ const Providers = ({
     <QueryClientProvider client={client}>
       <Provider store={store}>
         <LocationProvider>
-          {children}
+          <MenuProvider>
+            {children}
+          </MenuProvider>
         </LocationProvider>
       </Provider>
     </QueryClientProvider>

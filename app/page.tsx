@@ -4,9 +4,9 @@ import { useState, useEffect, useCallback } from "react"
 import Clock from "./components/Clock"
 import Footer from "./components/Footer"
 import { useLocationContext } from "./providers/LocationProvider"
-import SubscriptionCycledContent from "./containers/SubscriptionCycledContent"
 import TimeCycledContent from "./containers/TimeCycledContent"
 import GameCard from "./components/cards/GameCard"
+import WeatherCard from "./components/cards/WeatherCard"
 
 export default function Home() {
   const [lodgeName, setLodgeName] = useState("Hampton")
@@ -41,13 +41,10 @@ export default function Home() {
           </ul>
         </div>
         <div className="md:row-span-1 lg:col-span-1 pr-16">
-          {/* <SubscriptionCycledContent>
-            <TimeCycledContent delay={6000}>
-              <Image src="/images/ps1.png" width={200} height={200} alt="ps2 image"/>
-              <Image src="/images/storm.png" width={200} height={200} alt="ps2 image"/>
-            </TimeCycledContent>
-          </SubscriptionCycledContent> */}
-          <GameCard />
+          <TimeCycledContent delay={8000}>
+            <WeatherCard />
+            <GameCard />
+          </TimeCycledContent>
         </div>
       </div> 
       <div className="row-span-1">
