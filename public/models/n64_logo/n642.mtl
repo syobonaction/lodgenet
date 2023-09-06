@@ -1,0 +1,72 @@
+# Blender 3.4.1 MTL File: 'None'
+# www.blender.org
+
+newmtl Material.001_699E158_d.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_d.png
+
+newmtl Material.002_699E158_a.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_a.png
+
+newmtl Material.002_699E158_c.bmp
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_b.png
+
+newmtl Material.002_699E158_d.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_d.png
+
+newmtl Material.003_699E158_c.bmp
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_b.png
+
+newmtl Material.003_699E158_d.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_d.png
+
+newmtl Material.004_699E158_c.png
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd /Users/sismondi/Downloads/Nintendo 64 - The Legend of Zelda Ocarina of Time - N64 Logo/699E158_c.png

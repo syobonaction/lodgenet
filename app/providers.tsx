@@ -21,7 +21,7 @@ const Providers = ({
         </LocationProvider>
       </Provider>
     </QueryClientProvider>
-  );
+  )
 }
 
 export default Providers
