@@ -5,12 +5,14 @@ import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { increment } from "@/store/features/weatherScreenSlice"
 
-const TimeCycledContent = ({
-  children,
-  delay,
-}: {
+interface TimeCycledContentProps {
   children: React.ReactNode,
   delay: number
+}
+
+const TimeCycledContent: React.FC<TimeCycledContentProps> = ({
+  children,
+  delay,
 }) => {
   const childArr = React.Children.toArray(children)
   const [index, setIndex] = useState<number>(0)
@@ -24,6 +26,7 @@ const TimeCycledContent = ({
         setIndex(index + 1)
       } else {
         dispatch(increment())
+        setIndex(0)
       }
       setCurrentChild(childArr[index])
     }

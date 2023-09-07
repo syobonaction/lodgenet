@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Model from "../Model"
 import Scene from "../Scene"
@@ -13,7 +15,7 @@ const GameCard = () => {
   })
 
   return (
-    <div className={`w-full h-full grid grid-cols-1 transition-opacity ease-in-out delay-150 duration-1000 ${display}`}>
+    <div className={`w-full h-full grid grid-cols-1 transition-opacity ease-in-out duration-1000 ${display}`}>
       <div className="ml-auto lg:-mt-16 xl:-mt-32 col-start-1 row-start-1">
         <Image 
           src="/images/mario_wingcap.png" 
@@ -33,7 +35,7 @@ const GameCard = () => {
       </div>
       <div className="lg:text-5xl xl:text-6xl col-start-1 row-start-1">
         <p>Play N64</p>
-        <p>Games</p>
+        <p className="pl-28">Games</p>
       </div>
       <div className="lg:text-4xl xl:text-5xl col-start-1 row-start-1 text-center mt-auto">
         Press <span className="text-amber-300">ENTER</span> now!

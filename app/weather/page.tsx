@@ -10,6 +10,7 @@ import ExtendedForecast from "./components/ExtendedForecast"
 import CurrentConditions from "./components/CurrentConditions"
 import SubscriptionCycledContent from "../containers/SubscriptionCycledContent"
 import { useLocationContext } from "../providers/LocationProvider"
+import Controls from "../components/Controls"
 
 interface ForecastData {
   forecast: types.Forecast[]
@@ -86,6 +87,7 @@ export default function Weather() {
           </div>
           <div className="w-full h-full row-span-1">
             <Footer />
+            <Controls />
           </div>
       </>
       )}
