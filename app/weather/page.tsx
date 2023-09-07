@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import {request, gql} from "graphql-request"
 import * as types from "../graph/graphql"
 import { useQuery } from "@tanstack/react-query"
@@ -10,7 +10,6 @@ import ExtendedForecast from "./components/ExtendedForecast"
 import CurrentConditions from "./components/CurrentConditions"
 import SubscriptionCycledContent from "../containers/SubscriptionCycledContent"
 import { useLocationContext } from "../providers/LocationProvider"
-import Controls from "../components/Controls"
 
 interface ForecastData {
   forecast: types.Forecast[]
@@ -55,12 +54,14 @@ export default function Weather() {
   const location = useLocationContext()
   const [forecast, setForecast] = useState<types.Forecast[] | null>(null)
 
+  const api_url = process.env.NEXT_PUBLIC_GQL_API_URL
+
   const loadLocalWeatherData = useCallback((): Promise<ForecastData> => {
-    return request("http://localhost:8080/query",
+    return request(`${api_url}/query`,
       localWeatherDataQuery,
       {lat: location.lat, lon: location.lon},
     )
-  },[location])
+  },[location, api_url])
 
   useQuery({
     queryKey: ['localWeather'],
@@ -87,7 +88,6 @@ export default function Weather() {
           </div>
           <div className="w-full h-full row-span-1">
             <Footer />
-            <Controls />
           </div>
       </>
       )}
