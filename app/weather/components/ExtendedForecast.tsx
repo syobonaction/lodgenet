@@ -17,7 +17,7 @@ const ExtendedForecast: React.FC<ExtendedForecastProps> = ({
       "Monday",
       "Tuesday",
       "Wednesday",
-      "Thurday",
+      "Thursday",
       "Friday",
       "Saturday",
     ]
