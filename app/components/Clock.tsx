@@ -3,18 +3,17 @@
 import { useState, useEffect } from "react"
 
 export default function Clock() {
-  const [time, setTime] = useState("00:00")
+  const [time, setTime] = useState<Date>(new Date())
 
   useEffect(() => {
-    const newTime = new Date().toLocaleTimeString()
-    const timer = setInterval(() => setTime(newTime.slice(0,-3)), 1000)
+    const timer: NodeJS.Timeout = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-    return function cleanup() {
-      clearInterval(timer)
-    }
-  })
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div>{time}</div>
+    <div>{time.toLocaleTimeString().slice(0,-6)}</div>
   )
 }

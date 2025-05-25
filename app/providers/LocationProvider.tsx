@@ -11,22 +11,14 @@ interface LocationContext {
   complete: boolean
 }
 
-const initialValue: LocationContext = {
-  lat: "",
-  lon: "",
-  city: "",
-  state: "",
-  complete: false,
-}
-
-const LocationContext = createContext<LocationContext>(initialValue)
+const LocationContext = createContext<LocationContext | undefined>(undefined)
 
 const LocationProvider = ({
   children,
 }: {
   children: React.ReactNode
 }) => {
-  const [location, setLocation] = useState<LocationContext>(initialValue)
+  const [location, setLocation] = useState<LocationContext>()
 
   const getAddressFromCoords = async (lat: string, lon: string) => {
     const url = `https://geocode.maps.co/reverse?lat=${lat}&lon=${lon}`
@@ -35,27 +27,35 @@ const LocationProvider = ({
     const {address} = await response.json()
 
     if(response.ok) {
-      setLocation({
+      const locationData = {
         lat: lat,
         lon: lon,
         city: address.city || address.town,
         state: address.state,
         complete: true
-      })
+      }
+      setLocation(locationData)
+      localStorage.setItem("location", JSON.stringify(locationData))
     } else {
       Promise.reject(new Error("Problem fetching location data."))
     }
   }
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
-      const lat: string = position.coords.latitude.toString()
-      const lon: string = position.coords.longitude.toString()
+    const lsLocation: string = localStorage.getItem("location") || ""
 
-      getAddressFromCoords(lat, lon)
-    }, (err) => {
-      console.error(err)
-    })
+    if(lsLocation === "") {
+      navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+        const lat: string = position.coords.latitude.toString()
+        const lon: string = position.coords.longitude.toString()
+  
+        getAddressFromCoords(lat, lon)
+      }, (err) => {
+        console.error(err)
+      })
+    } else {
+      setLocation(JSON.parse(lsLocation))
+    }
   }, [])
   
 

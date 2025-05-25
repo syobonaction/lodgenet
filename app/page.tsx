@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import Clock from "./components/Clock"
+import { useState, useEffect, useCallback, Suspense, lazy } from "react"
 import Footer from "./components/Footer"
 import { useLocationContext } from "./providers/LocationProvider"
 import TimeCycledContent from "./containers/TimeCycledContent"
 import GameCard from "./components/cards/GameCard"
 import WeatherCard from "./components/cards/WeatherCard"
+
+const Clock = lazy(() => import("./components/Clock"));
 
 export default function Home() {
   const [lodgeName, setLodgeName] = useState("Hampton")
@@ -16,7 +17,7 @@ export default function Home() {
   const getLocation = useCallback(() => {
     const lodgeTypes = ["Lodge", "Inn", "Garden Inn", "Resort", "Hotel"]
     const lodgeType = lodgeTypes[Math.floor(Math.random() * lodgeTypes.length)]
-    setLodgeName(`Hampton ${lodgeType} ${location.city}`)
+    location && setLodgeName(`Hampton ${lodgeType} ${location.city}`)
   }, [location])
   
   useEffect(() => {
